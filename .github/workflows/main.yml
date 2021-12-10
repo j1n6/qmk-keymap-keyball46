@@ -21,7 +21,7 @@ jobs:
     - name: Link custom keymap definition
       run: ln -s $(pwd)/keyball $(pwd)/qmk_firmware/keyboards/keyball
     - name: Build firmware hex distribution
-      run: cd qmk_firmware && make keyball:j1n6
+      run: cd qmk_firmware && make keyball/rev1/ball:j1n6
       
     - name: Upload artifact
       uses: actions/upload-artifact@master
