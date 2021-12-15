@@ -16,8 +16,7 @@ jobs:
     - name: Update QMK Firmware
       run: |
         git submodule update --init
-        python3 -m pip install --user qmk
-        cd qmk_firmware && make git-submodule && qmk setup
+        cd qmk_firmware && make git-submodule && python3 -m pip install --user qmk && qmk setup
 
     - name: Link custom keymap definition
       run: ln -s $(pwd)/keyball $(pwd)/qmk_firmware/keyboards/keyball
