@@ -21,18 +21,18 @@ jobs:
     - name: Link custom keymap definition
       run: ln -s $(pwd)/keyball $(pwd)/qmk_firmware/keyboards/keyball
     - name: Build firmware hex distribution
-      run: cd qmk_firmware && make keyball/rev1/ball:j1n6
+      run: cd qmk_firmware && make qmk compile -j 4 -kb keyball/keyball46 -km j1n6
       
     - name: Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: keyball_rev1_ball_j1n6.hex.hex
-        path: qmk_firmware/keyball_rev1_ball_j1n6.hex.hex
+        name: keyball_keyball46_j1n6.hex
+        path: qmk_firmware/keyball_keyball46_j1n6.hex
     
     - name: Release
       uses: docker://softprops/action-gh-release
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: qmk_firmware/keyball_rev1_ball_j1n6.hex.hex
+        files: qmk_firmware/keyball_keyball46_j1n6.hex
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
